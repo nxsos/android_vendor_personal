@@ -25,7 +25,7 @@ jobs:
       - name: Download GmsCore (microG) - Pre-release
         run: |
           LATEST_URL=$(curl -s "https://api.github.com/repos/microg/GmsCore/releases" | \
-            jq -r '.[0].assets[] | select(.name | contains("com.google.android.gms")) | .browser_download_url')
+            jq -r '.[0].assets[] | select(.name | contains("com.google.android.gms") and endswith(".apk") and (contains("-hw") | not)) | .browser_download_url')
           wget -O /tmp/downloads/com.google.android.gms.apk "$LATEST_URL"
           
           TARGET="apps/priv-app/com.google.android.gms.apk"
@@ -45,7 +45,7 @@ jobs:
       - name: Download Vending (Play Store) - Pre-release
         run: |
           LATEST_URL=$(curl -s "https://api.github.com/repos/microg/GmsCore/releases" | \
-            jq -r '.[0].assets[] | select(.name | contains("com.android.vending")) | .browser_download_url')
+            jq -r '.[0].assets[] | select(.name | contains("com.android.vending") and endswith(".apk") and (contains("-hw") | not)) | .browser_download_url')
           wget -O /tmp/downloads/com.android.vending.apk "$LATEST_URL"
           
           TARGET="apps/priv-app/com.android.vending.apk"
