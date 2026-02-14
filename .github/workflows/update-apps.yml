@@ -1,0 +1,256 @@
+name: Update System Apps
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+jobs:
+  update-apps:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Set up directories
+        run: |
+          mkdir -p apps/priv-app
+          mkdir -p apps/permissions
+          mkdir -p /tmp/downloads
+          
+      - name: Download GmsCore (microG) - Pre-release
+        run: |
+          LATEST_URL=$(curl -s "https://api.github.com/repos/microg/GmsCore/releases" | \
+            jq -r '.[0].assets[] | select(.name | contains("com.google.android.gms")) | .browser_download_url')
+          wget -O /tmp/downloads/com.google.android.gms.apk "$LATEST_URL"
+          
+          TARGET="apps/priv-app/com.google.android.gms.apk"
+          if [ -f "$TARGET" ]; then
+            OLD_HASH=$(sha256sum "$TARGET" | awk '{print $1}')
+            NEW_HASH=$(sha256sum /tmp/downloads/com.google.android.gms.apk | awk '{print $1}')
+            if [ "$OLD_HASH" = "$NEW_HASH" ]; then
+              echo "No change in com.google.android.gms.apk"
+              rm /tmp/downloads/com.google.android.gms.apk
+            else
+              mv /tmp/downloads/com.google.android.gms.apk "$TARGET"
+            fi
+          else
+            mv /tmp/downloads/com.google.android.gms.apk "$TARGET"
+          fi
+          
+      - name: Download Vending (Play Store) - Pre-release
+        run: |
+          LATEST_URL=$(curl -s "https://api.github.com/repos/microg/GmsCore/releases" | \
+            jq -r '.[0].assets[] | select(.name | contains("com.android.vending")) | .browser_download_url')
+          wget -O /tmp/downloads/com.android.vending.apk "$LATEST_URL"
+          
+          TARGET="apps/priv-app/com.android.vending.apk"
+          if [ -f "$TARGET" ]; then
+            OLD_HASH=$(sha256sum "$TARGET" | awk '{print $1}')
+            NEW_HASH=$(sha256sum /tmp/downloads/com.android.vending.apk | awk '{print $1}')
+            if [ "$OLD_HASH" = "$NEW_HASH" ]; then
+              echo "No change in com.android.vending.apk"
+              rm /tmp/downloads/com.android.vending.apk
+            else
+              mv /tmp/downloads/com.android.vending.apk "$TARGET"
+            fi
+          else
+            mv /tmp/downloads/com.android.vending.apk "$TARGET"
+          fi
+          
+      - name: Download GsfProxy
+        run: |
+          LATEST_URL=$(curl -s "https://api.github.com/repos/microg/GsfProxy/releases/latest" | \
+            jq -r '.assets[] | select(.name == "GsfProxy.apk") | .browser_download_url')
+          wget -O /tmp/downloads/GsfProxy.apk "$LATEST_URL"
+          
+          TARGET="apps/priv-app/GsfProxy.apk"
+          if [ -f "$TARGET" ]; then
+            OLD_HASH=$(sha256sum "$TARGET" | awk '{print $1}')
+            NEW_HASH=$(sha256sum /tmp/downloads/GsfProxy.apk | awk '{print $1}')
+            if [ "$OLD_HASH" = "$NEW_HASH" ]; then
+              echo "No change in GsfProxy.apk"
+              rm /tmp/downloads/GsfProxy.apk
+            else
+              mv /tmp/downloads/GsfProxy.apk "$TARGET"
+            fi
+          else
+            mv /tmp/downloads/GsfProxy.apk "$TARGET"
+          fi
+          
+      - name: Download InstallerX-Revived
+        run: |
+          LATEST_URL=$(curl -s "https://api.github.com/repos/wxxsfxyzm/InstallerX-Revived/releases/latest" | \
+            jq -r '.assets[] | select(.name | contains("offline")) | .browser_download_url')
+          wget -O /tmp/downloads/InstallerX-Revived.apk "$LATEST_URL"
+          
+          TARGET="apps/priv-app/InstallerX-Revived.apk"
+          if [ -f "$TARGET" ]; then
+            OLD_HASH=$(sha256sum "$TARGET" | awk '{print $1}')
+            NEW_HASH=$(sha256sum /tmp/downloads/InstallerX-Revived.apk | awk '{print $1}')
+            if [ "$OLD_HASH" = "$NEW_HASH" ]; then
+              echo "No change in InstallerX-Revived.apk"
+              rm /tmp/downloads/InstallerX-Revived.apk
+            else
+              mv /tmp/downloads/InstallerX-Revived.apk "$TARGET"
+            fi
+          else
+            mv /tmp/downloads/InstallerX-Revived.apk "$TARGET"
+          fi
+          
+      - name: Download KernelSU-Next (spoofed)
+        run: |
+          LATEST_URL=$(curl -s "https://api.github.com/repos/KernelSU-Next/KernelSU-Next/releases/latest" | \
+            jq -r '.assets[] | select(.name | contains("spoofed")) | .browser_download_url')
+          wget -O /tmp/downloads/KernelSU_Next-spoofed.apk "$LATEST_URL"
+          
+          TARGET="apps/priv-app/KernelSU_Next-spoofed.apk"
+          if [ -f "$TARGET" ]; then
+            OLD_HASH=$(sha256sum "$TARGET" | awk '{print $1}')
+            NEW_HASH=$(sha256sum /tmp/downloads/KernelSU_Next-spoofed.apk | awk '{print $1}')
+            if [ "$OLD_HASH" = "$NEW_HASH" ]; then
+              echo "No change in KernelSU_Next-spoofed.apk"
+              rm /tmp/downloads/KernelSU_Next-spoofed.apk
+            else
+              mv /tmp/downloads/KernelSU_Next-spoofed.apk "$TARGET"
+            fi
+          else
+            mv /tmp/downloads/KernelSU_Next-spoofed.apk "$TARGET"
+          fi
+          
+      - name: Download AuroraServices APK
+        run: |
+          wget -O /tmp/downloads/AuroraServices.apk \
+            "https://gitlab.com/-/project/8363046/uploads/c22e95975571e9db143567690777a56e/AuroraServices_v1.1.1.apk"
+          
+          TARGET="apps/priv-app/AuroraServices.apk"
+          if [ -f "$TARGET" ]; then
+            OLD_HASH=$(sha256sum "$TARGET" | awk '{print $1}')
+            NEW_HASH=$(sha256sum /tmp/downloads/AuroraServices.apk | awk '{print $1}')
+            if [ "$OLD_HASH" = "$NEW_HASH" ]; then
+              echo "No change in AuroraServices.apk"
+              rm /tmp/downloads/AuroraServices.apk
+            else
+              mv /tmp/downloads/AuroraServices.apk "$TARGET"
+            fi
+          else
+            mv /tmp/downloads/AuroraServices.apk "$TARGET"
+          fi
+            
+      - name: Download AuroraServices permissions
+        run: |
+          wget -O /tmp/downloads/permissions_com.aurora.services.xml \
+            "https://gitlab.com/AuroraOSS/AuroraServices/raw/master/app/src/main/assets/permissions_com.aurora.services.xml"
+          
+          TARGET="apps/permissions/permissions_com.aurora.services.xml"
+          if [ -f "$TARGET" ]; then
+            OLD_HASH=$(sha256sum "$TARGET" | awk '{print $1}')
+            NEW_HASH=$(sha256sum /tmp/downloads/permissions_com.aurora.services.xml | awk '{print $1}')
+            if [ "$OLD_HASH" = "$NEW_HASH" ]; then
+              echo "No change in permissions_com.aurora.services.xml"
+              rm /tmp/downloads/permissions_com.aurora.services.xml
+            else
+              mv /tmp/downloads/permissions_com.aurora.services.xml "$TARGET"
+            fi
+          else
+            mv /tmp/downloads/permissions_com.aurora.services.xml "$TARGET"
+          fi
+          
+      - name: Download Droid-ify
+        run: |
+          LATEST_URL=$(curl -s "https://api.github.com/repos/Droid-ify/client/releases/latest" | \
+            jq -r '.assets[] | select(.name == "app-release.apk") | .browser_download_url')
+          wget -O /tmp/downloads/Droidify.apk "$LATEST_URL"
+          
+          TARGET="apps/priv-app/Droidify.apk"
+          if [ -f "$TARGET" ]; then
+            OLD_HASH=$(sha256sum "$TARGET" | awk '{print $1}')
+            NEW_HASH=$(sha256sum /tmp/downloads/Droidify.apk | awk '{print $1}')
+            if [ "$OLD_HASH" = "$NEW_HASH" ]; then
+              echo "No change in Droidify.apk"
+              rm /tmp/downloads/Droidify.apk
+            else
+              mv /tmp/downloads/Droidify.apk "$TARGET"
+            fi
+          else
+            mv /tmp/downloads/Droidify.apk "$TARGET"
+          fi
+          
+      - name: Download and extract BCR
+        run: |
+          LATEST_URL=$(curl -s "https://api.github.com/repos/chenxiaolong/BCR/releases/latest" | \
+            jq -r '.assets[] | select(.name | endswith("release.zip")) | .browser_download_url')
+          wget -O /tmp/downloads/bcr.zip "$LATEST_URL"
+          unzip -j /tmp/downloads/bcr.zip "system/priv-app/com.chiller3.bcr/app-release.apk" -d /tmp/downloads/
+          unzip -j /tmp/downloads/bcr.zip "system/etc/permissions/privapp-permissions-com.chiller3.bcr.xml" -d /tmp/downloads/
+          
+          TARGET_APK="apps/priv-app/BCR.apk"
+          if [ -f "$TARGET_APK" ]; then
+            OLD_HASH=$(sha256sum "$TARGET_APK" | awk '{print $1}')
+            NEW_HASH=$(sha256sum /tmp/downloads/app-release.apk | awk '{print $1}')
+            if [ "$OLD_HASH" = "$NEW_HASH" ]; then
+              echo "No change in BCR.apk"
+            else
+              mv /tmp/downloads/app-release.apk "$TARGET_APK"
+            fi
+          else
+            mv /tmp/downloads/app-release.apk "$TARGET_APK"
+          fi
+          
+          TARGET_PERM="apps/permissions/privapp-permissions-com.chiller3.bcr.xml"
+          if [ -f "$TARGET_PERM" ]; then
+            OLD_HASH=$(sha256sum "$TARGET_PERM" | awk '{print $1}')
+            NEW_HASH=$(sha256sum /tmp/downloads/privapp-permissions-com.chiller3.bcr.xml | awk '{print $1}')
+            if [ "$OLD_HASH" = "$NEW_HASH" ]; then
+              echo "No change in privapp-permissions-com.chiller3.bcr.xml"
+            else
+              mv /tmp/downloads/privapp-permissions-com.chiller3.bcr.xml "$TARGET_PERM"
+            fi
+          else
+            mv /tmp/downloads/privapp-permissions-com.chiller3.bcr.xml "$TARGET_PERM"
+          fi
+          
+          rm -f /tmp/downloads/bcr.zip /tmp/downloads/app-release.apk /tmp/downloads/privapp-permissions-com.chiller3.bcr.xml
+          
+      - name: Check for changes
+        id: git-check
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add apps/
+          if git diff-index --quiet HEAD --; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Commit and push if changed
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+          git commit -m "Auto-update system apps - $TIMESTAMP"
+          git push
+          
+      - name: Create summary
+        if: always()
+        run: |
+          echo "## Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| App | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          for app in apps/priv-app/*.apk; do
+            if [ -f "$app" ]; then
+              SIZE=$(du -h "$app" | cut -f1)
+              echo "| $(basename $app) | ✅ Downloaded ($SIZE) |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.git-check.outputs.changes }}" == "true" ]; then
+            echo "✅ Changes committed and pushed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ No changes detected" >> $GITHUB_STEP_SUMMARY
+          fi
