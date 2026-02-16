@@ -1,3 +1,94 @@
-// NXSOS vendor
+//
+// Automatically generated file. DO NOT MODIFY
+//
+
 soong_namespace {
+}
+
+android_app_import {
+    name: "AuroraServices",
+    owner: "nxsos",
+    apk: "proprietary/system/priv-app/AuroraServices/AuroraServices.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+}
+
+android_app_import {
+    name: "BCR",
+    owner: "nxsos",
+    apk: "proprietary/system/priv-app/BCR/BCR.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+}
+
+android_app_import {
+    name: "Droidify",
+    owner: "nxsos",
+    apk: "proprietary/system/priv-app/Droidify/Droidify.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+}
+
+android_app_import {
+    name: "GsfProxy",
+    owner: "nxsos",
+    apk: "proprietary/system/priv-app/GsfProxy/GsfProxy.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+}
+
+android_app_import {
+    name: "InstallerXRevived",
+    owner: "nxsos",
+    apk: "proprietary/system/priv-app/InstallerXRevived/InstallerXRevived.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+}
+
+android_app_import {
+    name: "KernelSUNext",
+    owner: "nxsos",
+    apk: "proprietary/system/priv-app/KernelSUNext/KernelSUNext.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+}
+
+android_app_import {
+    name: "Vending",
+    owner: "nxsos",
+    apk: "proprietary/system/priv-app/Vending/Vending.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
+}
+
+android_app_import {
+    name: "GmsCore",
+    owner: "nxsos",
+    apk: "proprietary/system/priv-app/GmsCore/GmsCore.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
 }
