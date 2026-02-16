@@ -1,0 +1,49 @@
+// NXSOS prebuilt privileged apps
+
+prebuilt_privileged_app {
+    name: "AuroraServices",
+    src: "AuroraServices.apk",
+    presigned: true,
+}
+
+prebuilt_privileged_app {
+    name: "BCR",
+    src: "BCR.apk",
+    presigned: true,
+}
+
+prebuilt_privileged_app {
+    name: "Droidify",
+    src: "Droidify.apk",
+    presigned: true,
+}
+
+prebuilt_privileged_app {
+    name: "GsfProxy",
+    src: "GsfProxy.apk",
+    presigned: true,
+}
+
+prebuilt_privileged_app {
+    name: "InstallerXRevived",
+    src: "InstallerX-Revived.apk",
+    presigned: true,
+}
+
+prebuilt_privileged_app {
+    name: "KernelSUNext",
+    src: "KernelSU_Next-spoofed.apk",
+    presigned: true,
+}
+
+prebuilt_privileged_app {
+    name: "Vending",
+    src: "com.android.vending.apk",
+    presigned: true,
+}
+
+prebuilt_privileged_app {
+    name: "GmsCore",
+    src: "com.google.android.gms.apk",
+    presigned: true,
+}
