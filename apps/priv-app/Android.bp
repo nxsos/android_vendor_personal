@@ -1,49 +1,81 @@
 // NXSOS prebuilt privileged apps
 
-prebuilt_privileged_app {
+android_app_import {
     name: "AuroraServices",
-    src: "AuroraServices.apk",
-    presigned: true,
+    apk: "AuroraServices.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
 }
 
-prebuilt_privileged_app {
+android_app_import {
     name: "BCR",
-    src: "BCR.apk",
-    presigned: true,
+    apk: "BCR.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
 }
 
-prebuilt_privileged_app {
+android_app_import {
     name: "Droidify",
-    src: "Droidify.apk",
-    presigned: true,
+    apk: "Droidify.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
 }
 
-prebuilt_privileged_app {
+android_app_import {
     name: "GsfProxy",
-    src: "GsfProxy.apk",
-    presigned: true,
+    apk: "GsfProxy.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
 }
 
-prebuilt_privileged_app {
+android_app_import {
     name: "InstallerXRevived",
-    src: "InstallerX-Revived.apk",
-    presigned: true,
+    apk: "InstallerX-Revived.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
 }
 
-prebuilt_privileged_app {
+android_app_import {
     name: "KernelSUNext",
-    src: "KernelSU_Next-spoofed.apk",
-    presigned: true,
+    apk: "KernelSU_Next-spoofed.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
 }
 
-prebuilt_privileged_app {
+android_app_import {
     name: "Vending",
-    src: "com.android.vending.apk",
-    presigned: true,
+    apk: "com.android.vending.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
 }
 
-prebuilt_privileged_app {
+android_app_import {
     name: "GmsCore",
-    src: "com.google.android.gms.apk",
-    presigned: true,
+    apk: "com.google.android.gms.apk",
+    certificate: "platform",
+    dex_preopt: {
+        enabled: false,
+    },
+    privileged: true,
 }
