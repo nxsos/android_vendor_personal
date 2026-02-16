@@ -2,16 +2,6 @@
 // NXSOS prebuilt apps
 
 android_app_import {
-    name: "AuroraServices",
-    apk: "proprietary/system/priv-app/AuroraServices/AuroraServices.apk",
-    certificate: "platform",
-    dex_preopt: {
-        enabled: false,
-    },
-    privileged: true,
-}
-
-android_app_import {
     name: "BCR",
     apk: "proprietary/system/priv-app/BCR/BCR.apk",
     certificate: "platform",
@@ -50,16 +40,6 @@ android_app_import {
     },
     privileged: true,
     overrides: ["PackageInstaller"],
-}
-
-android_app_import {
-    name: "KernelSUNext",
-    apk: "proprietary/system/priv-app/KernelSUNext/KernelSUNext.apk",
-    certificate: "platform",
-    dex_preopt: {
-        enabled: false,
-    },
-    privileged: true,
 }
 
 android_app_import {

@@ -6,13 +6,11 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # NXSOS prebuilt apps
 PRODUCT_PACKAGES += \
-    AuroraServices \
     BCR \
     Droidify \
     GmsCore \
     GsfProxy \
     InstallerXRevived \
-    KernelSUNext \
     Vending
 
 # Copy permission XMLs to both system and product partitions
