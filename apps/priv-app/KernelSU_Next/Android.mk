@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := KernelSUNext
-LOCAL_SRC_FILES := KernelSU_Next-spoofed.apk
+LOCAL_SRC_FILES := ../KernelSU_Next-spoofed.apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := PRESIGNED

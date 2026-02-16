@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := GmsCore
-LOCAL_SRC_FILES := com.google.android.gms.apk
+LOCAL_SRC_FILES := ../com.google.android.gms.apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := PRESIGNED

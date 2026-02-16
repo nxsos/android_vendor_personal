@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := Droidify
-LOCAL_SRC_FILES := Droidify.apk
+LOCAL_SRC_FILES := ../Droidify.apk
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := PRESIGNED
