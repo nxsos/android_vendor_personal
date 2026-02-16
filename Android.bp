@@ -49,6 +49,7 @@ android_app_import {
         enabled: false,
     },
     privileged: true,
+    overrides: ["PackageInstaller"],
 }
 
 android_app_import {

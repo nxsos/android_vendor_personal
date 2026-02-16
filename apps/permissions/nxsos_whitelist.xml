@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<config>
+    <!-- Battery optimization exemptions for microG and installer -->
+    <allow-in-power-save package="com.google.android.gms" />
+    <allow-in-power-save package="com.rosan.installer.x.revived" />
+</config>
