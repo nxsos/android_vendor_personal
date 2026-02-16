@@ -1,4 +1,4 @@
-# NXSOS prebuilt apps and permissions
+# NXSOS prebuilt apps
 PRODUCT_PACKAGES += \
     AuroraServices \
     BCR \
@@ -7,6 +7,9 @@ PRODUCT_PACKAGES += \
     GsfProxy \
     InstallerXRevived \
     KernelSUNext \
-    Vending \
-    permissions_com_aurora_services \
-    privapp_permissions_com_chiller3_bcr
+    Vending
+
+# Copy permission XMLs
+PRODUCT_COPY_FILES += \
+    vendor/nxsos/apps/permissions/permissions_com.aurora.services.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/permissions_com.aurora.services.xml \
+    vendor/nxsos/apps/permissions/privapp-permissions-com.chiller3.bcr.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-com.chiller3.bcr.xml
